@@ -101,13 +101,13 @@ void quick_sort_recursive(int *array, int left, int right, int len) {
 
 int main(int argc, char **argv) {
 
-    int array[] = {6, 2, 4, 10, 1, 7, 3, 5, 9, 11, 8};
+    int array[] = {3, 7, 5, 9, 1, 11, 8, 10, 6, 4, 2};
     int length = sizeof(array) / sizeof(array[0]); // length = right, left = 0
 
 
     if(argc == 2) {
         if(strcmp(argv[1], "recursive") == 0) {
-            print_array(array, length, false);
+            print_array(array, length - 1, false);
             quick_sort_recursive(array, 0, length - 1, length);
             print_array(array, length, true);
         } else {
@@ -115,8 +115,8 @@ int main(int argc, char **argv) {
             exit(-2);
         }
     } else if (argc == 1) {
-        print_array(array, length, false);
-        quick_sort(array, 0, length);
+        print_array(array, length - 1, false);
+        quick_sort(array, 0, length - 1);
         print_array(array, length, true);
     } else {
         fprintf(stderr, "[ERROR] Not supported operation\n");

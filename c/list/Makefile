@@ -1,5 +1,8 @@
 CC=gcc -std=c99
 CFLAGS=-Werror -Wall -Wextra -pedantic -g
 
-sort: sort.c
+build: sort.c
 	$(CC) $(CFLAGS) -o sort sort.c list.c
+
+clean:
+	rm sort

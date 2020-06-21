@@ -2,6 +2,7 @@
 #include <stdbool.h>
 
 void swap(int *a, int *b) {
+    printf("Swapped %d and %d\n", *a, *b);
     int tmp = *a;
     *a = *b;
     *b = tmp;
@@ -10,23 +11,27 @@ void swap(int *a, int *b) {
 void shell_sort(int *array, int length) {
 
     int i, j;
-    int step = length / 2;
+    int gap = length / 2; // prvni krok - polovina delky pole
 
-    while(step > 0) {
-        for(i = step; i <= length; i++) {
-            j = i - step;
-            while((j >= 0) && (array[j] > array[j + step])) {
-                swap(&array[j], &(array[j + step]));
-                j = j - step;
+    while(gap > 0) {
+        for(i = gap; i <= length; i++) {
+            j = i - gap;
+            while((j >= 0) && (array[j] > array[j + gap])) { // bubl. insert
+                swap(&array[j], &(array[j + gap]));
+                j = j - gap; // snizeni indexu o krok
+//                printf("%d ", j);
             }
         }
-        step = step / 2;
+//        printf("%d ", gap);
+        gap = gap / 2; // puleni kroku
     }
+
+    printf("\n");
 
 }
 
 int main() {
-    int array[] = {2, 9, 1, 3, 10, 8, 0, -1, -100, 10, 3, 3, -101, 11};
+    int array[] = {2, 9, 1, 3, 8};
     int length = sizeof(array) / sizeof(array[0]);
 
     printf("Before sorting: ");
@@ -35,8 +40,8 @@ int main() {
     }
     printf("\n");
 
+    shell_sort(array, length-1);
     printf("After sorting: ");
-    shell_sort(array, length);
     for(int i = 0; i < length; i++) {
         printf("%i ", array[i]);
     }
