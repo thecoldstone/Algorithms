@@ -1,8 +1,11 @@
-CC=gcc -std=c99
-CFLAGS=-Werror -Wall -Wextra -pedantic -g
+CC = gcc -std=c99
+CFLAGS = -Wall -Wextra -pedantic -g
 
-build: sort.c
-	$(CC) $(CFLAGS) -o sort sort.c list.c
+PREPROCESSORS = -D DOUBLY -D CURR
+
+build: 
+	$(CC) $(CFLAGS) -o list list.c 
 
 clean:
-	rm sort
+	rm list
+	rm -rf *.dSYM
